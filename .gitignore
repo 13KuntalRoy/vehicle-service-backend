@@ -1,0 +1,50 @@
+# Node.js dependencies
+/node_modules/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Dependency directories
+jspm_packages/
+
+# build output
+/dist
+/build
+/coverage
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# IDE specific files
+.idea/
+.vscode/
+
+# Other
+*.swp
+*.swo
+*.swn
+
+# Package lock files (if you are using yarn, you may want to keep yarn.lock)
+package-lock.json
+yarn.lock
+
+# Debug directories and settings
+.vscode/
+.idea/
+
+# Other OS-specific files
+.DS_Store
+Thumbs.db
+
+# Production build files
+/public
