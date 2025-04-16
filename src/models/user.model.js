@@ -1,4 +1,3 @@
- 
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
@@ -11,7 +10,10 @@ const userSchema = new mongoose.Schema({
   gender: String,
   dob: Date,
   profile_image: String,
-  is_verified: Boolean,
+  is_verified: Boolean, // Flag to mark if the user is fully verified
+  phone_verified: { type: Boolean, default: false }, // Flag for OTP verification
+  otp: String, // Store the OTP sent to the user
+  otp_expiry: Date, // Expiry time for OTP
   status: { type: String, enum: ['active', 'banned'] },
   kyc_document_url: String,
   location: { type: { type: String }, coordinates: [Number] },
@@ -22,6 +24,12 @@ const userSchema = new mongoose.Schema({
   created_at: { type: Date, default: Date.now },
   updated_at: { type: Date, default: Date.now },
   deleted_at: Date
+});
+
+// Automatically update `updated_at` before saving a document
+userSchema.pre('save', function (next) {
+  this.updated_at = Date.now();
+  next();
 });
 
 module.exports = mongoose.model('User', userSchema);
