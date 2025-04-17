@@ -506,8 +506,7 @@ exports.sendEmailOtp = async (req, res) => {
     let user = await User.findOne({ email });
 
     if (!user) {
-      // Create user placeholder if not exists
-      user = new User({ email, otp, otp_expiry: otpExpiry });
+        return res.status(404).json({ message: 'User not found' });
     } else {
       user.otp = otp;
       user.otp_expiry = otpExpiry;
