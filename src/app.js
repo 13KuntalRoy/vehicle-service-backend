@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 // const userRoutes = require('./routes/user.routes');
 const authRoutes = require('./routes/auth.routes');
-const userRoutes = require('./routes/user.router')
+const userRoutes = require('./routes/user.router');
 const { swaggerUi, swaggerSpec } = require('./config/swagger');
 
 const app = express();
@@ -14,9 +14,31 @@ app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.use('/api/auth', authRoutes);
 
-app.use('/api', authRoutes);
-// Routes
-// app.use('/api/users', userRoutes);
+const onRoadServiceRoutes = require('./routes/onroad-service.routes');
+app.use('/api/onroad-service', onRoadServiceRoutes);
+app.use('/api/users', userRoutes);
+const serviceRoutes = require('./routes/service.routes');
+app.use('/api/services', serviceRoutes);
+const serviceCenterRoutes = require('./routes/serviceCenter.routes');
+app.use('/api/service-centers', serviceCenterRoutes);
+const serviceBookingRoutes = require('./routes/serviceBooking.routes');
+app.use('/api/bookings', serviceBookingRoutes);
+const vehicleRoutes = require('./routes/vehicle.routes');
+app.use('/api/vehicles', vehicleRoutes);
+const reviewRoutes = require('./routes/review.routes');
+app.use('/api/reviews', reviewRoutes);
+const productRoutes = require('./routes/product.routes');
+app.use('/api/products', productRoutes);
+const productCategoryRoutes = require('./routes/product-category.routes');
+app.use('/api/product-categories', productCategoryRoutes);
+
+const notificationRoutes = require('./routes/notification.routes');
+app.use('/api/notifications', notificationRoutes);
+const orderRoutes = require('./routes/order.routes');
+app.use('/api/orders', orderRoutes);
+const orderItemRoutes = require('./routes/orderItem.routes');
+app.use('/api/order-items', orderItemRoutes);
+
 
 // app.get('/', (req, res) => res.send('🚗 Vehicle Service API'));
 app.get('/', (req, res) => {

@@ -1,15 +1,50 @@
- 
 const mongoose = require('mongoose');
 
-const addressSchema = new mongoose.Schema({
-  user_id: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-  line1: String,
-  city: String,
-  state: String,
-  postal_code: String,
-  latitude: Number,
-  longitude: Number,
-  is_primary: Boolean
-});
+// Define Address Schema
+const addressSchema = new mongoose.Schema(
+  {
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+      required: true,
+    },
+    line1: {
+      type: String,
+      required: true,
+    },
+    line2: {
+      type: String,
+      default: '',
+    },
+    city: {
+      type: String,
+      required: true,
+    },
+    state: {
+      type: String,
+      required: true,
+    },
+    country: {
+      type: String,
+      required: true,
+    },
+    postalCode: {
+      type: String,
+      required: true,
+    },
+    coordinates: {
+      type: [Number], // [longitude, latitude]
+      index: '2dsphere', // Geospatial index for efficient location-based queries
+    },
+    isPrimary: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  { timestamps: true }
+);
 
-module.exports = mongoose.model('Address', addressSchema);
+// Create a model based on the schema
+const Address = mongoose.model('Address', addressSchema);
+
+module.exports = Address;
