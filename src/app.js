@@ -42,7 +42,9 @@ app.use('/api/order-items', orderItemRoutes);
 const _2fa = require('./routes/2fa.router');
 app.use('/api/auth',_2fa);
 
-
+const faceAuthRoutes = require('./routes/faceAuth.routes'); // Adjust the path as necessary
+// Register the routes
+app.use('/api/faceauth', faceAuthRoutes);
 
 // app.get('/', (req, res) => res.send('🚗 Vehicle Service API'));
 app.get('/', (req, res) => {

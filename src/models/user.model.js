@@ -21,6 +21,8 @@ const userSchema = new mongoose.Schema({
   subscription: { plan: String, price: Number, benefits: [String], valid_till: Date },
   mechanic_profile: { skills: [String], certifications: [String], experience_years: Number, hourly_rate: Number },
   seller_profile: { business_name: String, license_number: String, gst_number: String },
+  secret: { type: String }, // 2FA Secret
+  two_factor_enabled: { type: Boolean, default: false }, // 2FA Status
   created_at: { type: Date, default: Date.now },
   updated_at: { type: Date, default: Date.now },
   deleted_at: Date
