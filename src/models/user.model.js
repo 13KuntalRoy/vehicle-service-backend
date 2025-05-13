@@ -23,6 +23,11 @@ const userSchema = new mongoose.Schema({
   seller_profile: { business_name: String, license_number: String, gst_number: String },
   secret: { type: String }, // 2FA Secret
   two_factor_enabled: { type: Boolean, default: false }, // 2FA Status
+   // New field for Face Authentication
+   face_data: {
+    image_url: { type: String }, // URL of the face image
+    descriptor: { type: [Number] } // Face descriptor for comparison
+  },
   created_at: { type: Date, default: Date.now },
   updated_at: { type: Date, default: Date.now },
   deleted_at: Date

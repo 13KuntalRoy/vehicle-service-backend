@@ -1,11 +1,10 @@
-const express = require("express");
+// routes/faceAuth.routes.js
+const express = require('express');
 const router = express.Router();
-const faceauth = require("../controllers/faceauth.controller"); // Adjust the path as necessary
+const faceAuthController = require('../controllers/faceAuth.controller');
 
-// Route for enabling face authentication (uploading face image)
-router.post("/enable-faceauth", faceauth.enable_faceauth);
-
-// Route for verifying face authentication
-router.post("/verify-faceauth", faceauth.verify_faceauth);
+router.post('/enable', faceAuthController.enableFaceAuth);
+router.post('/verify', faceAuthController.verifyFaceAuth);
+router.post('/disable', faceAuthController.disableFaceAuth);
 
 module.exports = router;
